@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Useless Ask — an absurdly official permission generator for pointless decisions." />
+    <title>Useless Ask — Officially Unnecessary</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo-mark" aria-hidden="true"><span>☷</span><i>✎</i></div>
+          <div><p class="brand-name">USELESS ASK</p><p class="brand-tagline">Officially unnecessary</p></div>
+        </div>
+
+        <p class="side-heading">MINISTRY DASHBOARD</p>
+        <div class="metric-stack">
+          <article class="metric-card"><span>Permits issued</span><b id="permit-count">1,284</b><small>+37 today</small></article>
+          <article class="metric-card"><span>Value created</span><b>0%</b><small>perfectly steady</small></article>
+          <article class="metric-card"><span>Papers shuffled</span><b>6,941</b><small>+100% unnecessary</small></article>
+        </div>
+
+        <p class="side-heading">CABINET PULSE</p>
+        <div class="pulse-card">
+          <strong>🗳️ Mood: concerned but photogenic</strong>
+          <span>Files pending: 404 · Tea level: alarming</span>
+          <em>Public confidence: statistically mysterious</em>
+        </div>
+        <div class="queue-card"><span>⌛</span><p>Queue position: 1 of 1<br /><small>Estimated wait: emotionally confusing</small></p></div>
+
+        <p class="side-heading">CABINET STICKER PACK</p>
+        <div class="sticker-pack" aria-label="Fictional politician sticker pack">
+          <small>100% FICTIONAL · 0% ELECTABLE</small>
+          <div class="stickers"><span title="Minister More Forms">👨🏽‍💼</span><span title="Minister No Comments">👩🏽‍⚖️</span><span title="Minister Tea First">🧑🏾‍💼</span></div>
+        </div>
+
+        <p class="side-heading">TODAY'S CIRCULAR</p>
+        <div class="circular-card" id="circular-text">Official clarification: “Just because” is a constitutionally valid reason here.</div>
+        <button class="secondary-button side-button" id="new-circular">Issue another circular</button>
+        <p class="disclaimer">A fictional parody ministry.<br />Zero legal power. Maximum paperwork.</p>
+      </aside>
+
+      <main class="main-content">
+        <nav class="tabs" aria-label="Main navigation">
+          <button class="tab active" data-tab="apply">Apply for permission</button>
+          <button class="tab" data-tab="hall">Hall of nonsense</button>
+          <button class="tab" data-tab="about">About the Ministry</button>
+        </nav>
+
+        <section class="page active" id="apply-page">
+          <header class="hero-card">
+            <div class="hero-logo logo-mark" aria-hidden="true"><span>☷</span><i>✎</i></div>
+            <div class="hero-copy">
+              <p class="eyebrow">USELESS ASK · DEPARTMENT OF UNNECESSARY QUESTIONS</p>
+              <h1>Ask before doing<br /><span>something pointless.</span></h1>
+              <p>Because ordinary life has too few forms, stamps, committees and deeply unnecessary approvals.</p>
+            </div>
+            <div class="official-stamp">OFFICIALLY<br />UNNECESSARY</div>
+          </header>
+
+          <p class="section-label">START AN APPLICATION</p>
+          <form class="application-card" id="application-form" novalidate>
+            <div class="field-grid">
+              <label>Applicant name<input id="applicant-name" type="text" placeholder="e.g. Manav, CEO of procrastination" maxlength="70" required /></label>
+              <label>Urgency level<select id="urgency"><option>Can wait</option><option selected>Slightly dramatic</option><option>National emergency (probably not)</option></select></label>
+              <label>Permission category<select id="category">
+                <option>Taking a 7-minute nap</option><option>Eating samosa before dinner</option><option>Ignoring a group-chat notification</option>
+                <option>Buying something I absolutely do not need</option><option>Staring at the ceiling and calling it research</option>
+                <option>Replying “hmm” after three business days</option><option>Wearing sunglasses indoors for no reason</option>
+                <option>Opening the fridge again because maybe new food appeared</option><option>Cancelling plans to protect my blanket relationship</option>
+                <option>Calling an online shopping cart a financial vision board</option><option>Watching one more episode under international pressure</option>
+                <option>Avoiding a phone call because the battery is emotionally low</option><option>Taking a screenshot instead of writing something down</option>
+                <option>Using the word “vibes” in a serious conversation</option><option value="custom">Something even less important...</option>
+              </select></label>
+              <label>Describe your noble mission<textarea id="mission" placeholder="Make it dramatic. The cabinet loves context." maxlength="220"></textarea></label>
+              <label>One witness <small>(optional but official-looking)</small><input id="witness" type="text" placeholder="e.g. My confused roommate" maxlength="70" /></label>
+              <label class="checkbox-field"><span>Cabinet declaration</span><input id="useless-check" type="checkbox" /> I confirm this has no meaningful contribution to society.</label>
+            </div>
+            <p class="form-error" id="form-error" aria-live="polite"></p>
+            <button class="primary-button" type="submit">Submit to the Cabinet <span>→</span></button>
+          </form>
+
+          <section class="approval-section hidden" id="approval-section" aria-live="polite">
+            <p class="section-label">THE CABINET HAS SPOKEN</p>
+            <h2>Your request has entered the official maze.</h2>
+            <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div><span id="progress-label">Opening an unnecessarily large file...</span></div>
+            <div class="approval-list" id="approval-list"></div>
+            <div class="reaction-grid" id="reaction-grid"></div>
+          </section>
+
+          <section class="certificate-section hidden" id="certificate-section">
+            <p class="section-label">YOUR QUESTIONABLY OFFICIAL CERTIFICATE</p>
+            <div class="certificate" id="certificate"></div>
+            <div class="certificate-actions">
+              <button class="secondary-button" id="download-certificate">Download suspiciously official certificate</button>
+              <button class="text-button" id="print-certificate">Print certificate</button>
+            </div>
+          </section>
+        </section>
+
+        <section class="page" id="hall-page">
+          <p class="section-label">HALL OF OFFICIAL NONSENSE</p><h2>Recent citizens who dared to ask.</h2>
+          <p class="section-label archive-label">FEATURED FILES FROM THE NATIONAL ARCHIVE</p>
+          <div class="archive-list" id="archive-list"></div>
+          <div class="poll-card">
+            <p class="section-label">PUBLIC SUGGESTION BOX · UNFORTUNATELY OPEN</p>
+            <h3>Today’s most avoidable debate: what should become a national priority?</h3>
+            <div class="poll-options">
+              <label><input type="radio" name="poll" value="A protected 3 PM nap window" checked /> A protected 3 PM nap window</label>
+              <label><input type="radio" name="poll" value="Official approval before replying ‘k’" /> Official approval before replying ‘k’</label>
+              <label><input type="radio" name="poll" value="A hotline for deciding whether to order fries" /> A hotline for deciding whether to order fries</label>
+            </div>
+            <div class="poll-bottom"><p id="poll-result">The Cabinet is waiting patiently for democracy to become slightly sillier.</p><button class="primary-button small-button" id="vote-button">Cast a wildly unnecessary vote</button></div>
+          </div>
+          <blockquote>“This could have been a thought.”<span>— The entire Cabinet, after approving your request</span></blockquote>
+        </section>
+
+        <section class="page" id="about-page">
+          <p class="section-label">ABOUT THE MINISTRY</p><h2>A bureaucracy with absolutely nowhere to go.</h2>
+          <div class="feature-grid">
+            <article><span>🧠</span><h3>Artificial Unintelligence</h3><p>Our algorithms take simple questions and make them deeply administrative.</p></article>
+            <article><span>📦</span><h3>Cloud of Paperwork</h3><p>Every request is stored in a digital drawer that is definitely too full.</p></article>
+            <article><span>🏅</span><h3>Certified Useless</h3><p>Proudly inefficient, dramatically over-designed and completely fictional.</p></article>
+          </div>
+          <p class="section-label cabinet-title">MEET THE COMPLETELY FICTIONAL CABINET</p>
+          <h3 class="subheading">They campaign on one promise: more forms for everyone.</h3>
+          <div class="minister-grid">
+            <article><span>🧓</span><h3>Hon. Pending Prasad</h3><strong>Minister for Doing It Tomorrow</strong><p>Has postponed 17 urgent matters and one lunch. His policy: if it can wait, it should.</p></article>
+            <article><span>👩🏽‍⚖️</span><h3>Madam Formika Rao</h3><strong>Minister of Mandatory Forms</strong><p>Believes every emotion deserves a three-page application and a stapled annexure.</p></article>
+            <article><span>🧑🏽‍💼</span><h3>Dr. Circular Verma</h3><strong>Minister of Repeated Announcements</strong><p>Issues daily circulars reminding citizens about yesterday’s circulars.</p></article>
+          </div>
+          <div class="manifesto"><p class="section-label">CABINET MANIFESTO</p><p>1. Every small decision deserves a committee.<br />2. Every committee deserves snacks.<br />3. Every snack deserves a stamped receipt.</p></div>
+        </section>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
