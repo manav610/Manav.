@@ -66,16 +66,17 @@ function replyForWitness(witness) {
     `${witness} may never know about this, but the Ministry thanks them for their invisible service.`
   ]) : 'No witness was submitted. The Cabinet appointed an emotionally neutral bystander and promised not to bother them.';
 }
-function createPermit(form) {
-  const name = form.name.value.trim();
-  const selected = form.category.value;
-  const custom = form.mission.value.trim();
+function createPermit() {
+  const name = document.getElementById('applicant-name').value.trim();
+  const selected = document.getElementById('category').value;
+  const custom = document.getElementById('mission').value.trim();
   const purpose = selected === 'custom' && custom ? custom : selected;
-  const witness = form.witness.value.trim() || 'An emotionally neutral bystander';
+  const witnessInput = document.getElementById('witness').value.trim();
+  const witness = witnessInput || 'An emotionally neutral bystander';
   const sign = pick(signatures);
   const number = `UA-${String(Date.now()).slice(-6)}-${Math.random().toString(16).slice(2,6).toUpperCase()}`;
   const shuffled = [...departments].sort(() => Math.random() - .5).slice(0,5);
-  return { name, purpose, mission: custom || purpose, witness, urgency: form.urgency.value, number, departments: shuffled, condition: pick(conditions), missionReply: replyForMission(custom || purpose), witnessReply: replyForWitness(form.witness.value.trim()), signature: sign[0], role: sign[1], comment: 'The committee found the request gloriously unnecessary.', date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }) };
+  return { name, purpose, mission: custom || purpose, witness, urgency: document.getElementById('urgency').value, number, departments: shuffled, condition: pick(conditions), missionReply: replyForMission(custom || purpose), witnessReply: replyForWitness(witnessInput), signature: sign[0], role: sign[1], comment: 'The committee found the request gloriously unnecessary.', date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }) };
 }
 function animateApproval(permit) {
   const section = document.getElementById('approval-section');
@@ -120,11 +121,14 @@ function downloadCertificate() {
   const link = document.createElement('a'); link.href = URL.createObjectURL(new Blob([html], {type:'text/html'})); link.download = `useless-ask-${currentPermit.number.toLowerCase()}.html`; link.click(); URL.revokeObjectURL(link.href);
 }
 document.getElementById('application-form').addEventListener('submit', event => {
-  event.preventDefault(); const form = event.currentTarget; const error = document.getElementById('form-error');
-  if (!form.name.value.trim()) { error.textContent = 'Every great useless request needs an applicant name.'; return; }
-  if (form.category.value === 'custom' && !form.mission.value.trim()) { error.textContent = 'Please describe the custom pointless mission first.'; return; }
+  event.preventDefault(); const error = document.getElementById('form-error');
+  const name = document.getElementById('applicant-name').value.trim();
+  const category = document.getElementById('category').value;
+  const mission = document.getElementById('mission').value.trim();
+  if (!name) { error.textContent = 'Every great useless request needs an applicant name.'; return; }
+  if (category === 'custom' && !mission) { error.textContent = 'Please describe the custom pointless mission first.'; return; }
   if (!document.getElementById('useless-check').checked) { error.textContent = 'Please certify the uselessness. The cabinet is strict about this part.'; return; }
-  error.textContent = ''; currentPermit = createPermit(form); savePermit(currentPermit); animateApproval(currentPermit);
+  error.textContent = ''; currentPermit = createPermit(); savePermit(currentPermit); animateApproval(currentPermit);
 });
 document.getElementById('new-circular').addEventListener('click', () => document.getElementById('circular-text').textContent = pick(circulars));
 document.getElementById('vote-button').addEventListener('click', () => { const selected = document.querySelector('input[name="poll"]:checked').value; document.getElementById('poll-result').innerHTML = `<strong>Cabinet verdict:</strong> “${escapeHTML(selected)}” received one vote and three dramatic press conferences.`; });
